@@ -1,0 +1,22 @@
+{
+  "name": "mol_burgie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davpouck/mol_burgie.git"
+  },
+  "dependencies": {
+    "express":"*",
+    "fs":"*",
+    "child_process":"*"
+ },
+  "keywords": [],
+  "author": "",
+  "license": ""
+}
