@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+  <title>De Mol Burgie</title>
+</head>
+<body>
+    <div>
+        <label>naam: </label><br>
+        <input id="login_name"></input>
+    </div>
+    <div>
+        <label>ww: </label><br>
+        <input id="ww"></input>
+    </div>
+    <button onclick="login()">login</button>
+    <!-- <div>
+        <label>naam: </label><br>
+        <input id="login_name_wijzig"></input>
+    </div>
+    <div>
+        <label>ww: </label><br>
+        <input id="old_ww"></input>
+    </div>
+    <div>
+        <label>nieuw ww: </label><br>
+        <input id="new_ww"></input>
+    </div>
+    <button onclick="wijzig_ww()">wijzig ww</button> -->
+    <script>
+        function login() {
+            let message = {
+                name: login_name.value,
+                ww: ww.value,
+            }
+            fetch("./login", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'login': JSON.stringify(message)
+                    },
+            }).then(response => {
+                return response.json()
+            }).then(json => {
+                sessionStorage.setItem("key", json.key)
+                window.location.href = "./eliminatie_config.html"
+            }).catch(err => {
+                alert("Login failed")
+            })
+        }
+
+        function wijzig_ww() {
+
+        }
+    </script>
+</body>

@@ -1,0 +1,83 @@
+@font-face {
+  font-family: molFont;
+  src: url(../assets/molFont.otf);
+}
+
+body, pre {
+  font-family: "molFont";
+  font-size: 24px;
+  text-transform: uppercase;
+  background-color: black;
+  color: #d4ebf3;
+  height: 100%;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+#content {
+  margin-left: 2.5%;
+  width: 95%;
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+  font-size: 400%;
+}
+
+
+#header {
+  height: 80px;
+  background-color:#46aebc;
+}
+
+#logo {
+  height: 100%;
+}
+
+.headerOption > a {
+  color: #46aebc;
+}
+
+
+.headerOption > a:hover {
+  font-size: 38px;
+}
+
+.headerOption > a:active {
+  color: #d4ebf3;
+}
+
+.headerOption {
+  color: #46aebc;
+  font-size: 32px;
+  background-color: black;
+  padding: 8px;
+}
+
+.loadingBox {
+  position: absolute;
+  border-style: solid;
+  border-color: #46aebc;
+  font-family: molFont;
+  color: #d4ebf3;
+  height: 20px;
+  width: 60%;
+  left: 20%;
+  bottom: 10%;
+}
+
+#loadingBar {
+  width: 0%;
+  transition-property: width;
+  transition-duration: 5s;
+  transition-timing-function: linear;
+  position: relative;
+  background-color: #46aebc;
+  height: 20px;
+}
+
+

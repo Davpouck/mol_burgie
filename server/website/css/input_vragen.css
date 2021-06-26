@@ -1,0 +1,12 @@
+.vraag {
+    padding: 20px;
+    border-top: solid black 1px;
+}
+
+input {
+    margin: 2px;
+}
+
+input.correct {
+    border: solid green 3px;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+  <title>De Mol Burgie - Eliminatie</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+  <link rel="stylesheet" href="./css/eliminatie.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+</head>
+<body>
+    
+
+  
+
+  
+  <p class="info" hidden>Geen eliminatie-vragen beschikbaar.</p>
+
+  <article id="page">
+
+    <div id="clock">
+      <span id="min">00</span>:<span id="sec">00</span>
+    </div>
+
+  <!-- <form action="https://send.pageclip.co/ttyOwMDLUTuoIOR3IXlv5MI0BXksdvFh/test" class="pageclip-form" method="post"> -->
+    <!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
+    <div id="startTest">
+      <div id="naam">
+        <span class="colh">Kies jouw naam:</span>
+        <div class="dropdown colh" onclick="showDropdown()">
+          <span class="disabled" id="naamKeuze">Naam</span>
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          <table id="dropdownNames">
+          </table>
+        </div>
+        <span id="pasvragen" hidden></span>
+      <span class="button" id="start" onclick="clockStart()" disabled>START</span>
+      </div>
+    </div>
+
+    <article id="eliminatie" hidden>
+      <div id="sidebar">
+        <div onclick="jumpToVraag(0)">1.</div>
+        <div onclick="jumpToVraag(1)">2.</div>
+        <div onclick="jumpToVraag(2)">3.</div>
+        <div onclick="jumpToVraag(3)">4.</div>
+        <div onclick="jumpToVraag(4)">5.</div>
+        <div onclick="jumpToVraag(5)">6.</div>
+        <div onclick="jumpToVraag(6)">7.</div>
+        <div onclick="jumpToVraag(7)">8.</div>
+        <div onclick="jumpToVraag(8)">9.</div>
+        <div onclick="jumpToVraag(9)">10.</div>
+        <div onclick="jumpToVraag(10)">11.</div>
+        <div onclick="jumpToVraag(11)">12.</div>
+        <div onclick="jumpToVraag(12)">13.</div>
+        <div onclick="jumpToVraag(13)">14.</div>
+        <div onclick="jumpToVraag(14)">15.</div>
+        <div onclick="jumpToVraag(15)">16.</div>
+        <div onclick="jumpToVraag(16)">17.</div>
+        <div onclick="jumpToVraag(17)">18.</div>
+        <div onclick="jumpToVraag(18)">19.</div>
+        <div onclick="jumpToVraag(19)">20.</div>
+      </div>
+      <div id="vraag">
+        <p>1. Voorbeeldvraag</p>
+        <div id="vraagNav">
+          <span class="button" onclick="prevVraag()"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+          <span class="button" onclick="nextVraag()"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+          <div id="joker" onclick="checkboxClick('joker')">
+            <span class="checkbox"></span><span>joker</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="optie" onclick="checkboxClick(0)">
+              <span class="checkbox"></span><span>optie 1</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(1)">
+              <span class="checkbox"></span><span>optie 2</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(2)">
+              <span class="checkbox"></span><span>optie 3</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(3)">
+              <span class="checkbox"></span><span>optie 4</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(4)">
+              <span class="checkbox"></span><span>optie 5</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(5)">
+              <span class="checkbox"></span><span>optie 6</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="optie" onclick="checkboxClick(6)">
+              <span class="checkbox"></span><span>optie 7</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(7)">
+              <span class="checkbox"></span><span>optie 8</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(8)">
+              <span class="checkbox"></span><span>optie 9</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(9)">
+              <span class="checkbox"></span><span>optie 10</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(10)">
+              <span class="checkbox"></span><span>optie 11</span>
+            </div>
+            <div class="optie" onclick="checkboxClick(11)">
+              <span class="checkbox"></span><span>optie 12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  
+    <!-- This button will have a loading spinner. Keep the inner span for best results. -->
+    <div id="submit" class="button disabled" onclick="clockStop()">
+      <span>Submit</span>
+    </div>
+  </form>
+  <script src="./js/eliminatie.js"></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </article>
+  
+</body>

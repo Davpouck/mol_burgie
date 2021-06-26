@@ -1,0 +1,191 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.button {
+    border-style: solid;
+    border-color: #46aebc;
+    background-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 10px;
+    font-family: molFont;
+    color: #d4ebf3;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #46aebc;
+}
+
+.disabled, #dropdownNames tr:hover {
+    opacity: 50%;
+}
+
+.colh {
+    position: relative;
+    float: left;
+    margin-right: 5px;
+}
+
+#naam i {
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+#startTest {
+    position: relative;
+    left: 15%;
+    font-size: 150%;
+}
+
+#startTest > select {
+    font-size: 100%;
+}
+
+#pasvragen {
+    padding-left: 80px;
+}
+
+#clock {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    font-size: 300%;
+    border-style: solid;
+    border-color: #46aebc;
+    border-width: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#submit {
+    font-size: 300%;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    border-width: 4px;
+}
+
+#vraagNav {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    
+}
+
+#vraagNav > span {
+    padding-top: 5px;
+    padding-bottom: 2px;
+    line-height: 30px;
+}
+
+#sidebar {
+    width: 40px;
+    text-align: center;
+    float: left;
+}
+
+#sidebar > div {
+    border-style: solid;
+    border-color: #46aebc;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#sidebar > div:first-child {
+    border-top-width: 2px;
+}
+
+#sidebar > div:last-child {
+    border-bottom-width: 2px;
+}
+
+#sidebar > div:hover, .selected {
+    font-size: 150%;
+    height: 45px;
+    line-height: 45px;
+}
+
+.filled {
+    background-color: #46aebc;;
+}
+
+#vraag {
+    position: absolute;
+    width: 60%;
+    left: 80px;
+    top: 60px;
+    word-wrap: break-word;
+}
+
+#vraag > p:first-child {
+    font-size: 150%;
+}
+
+.col {
+    position: relative;
+    float: left;
+    width: 50%;
+}
+
+.optie {
+    padding: 20px;
+}
+
+.optie > span:last-child {
+    padding-left: 20px;
+}
+
+.optie:hover {
+    color: #2e6d95;
+}
+
+.checkbox {
+    position: relative;
+    float:left;
+    width: 20px;
+    height: 20px;
+    background-color: #2e6d95;
+    color: #d4ebf3;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+}
+
+.rooster {
+    padding-top: 5px;
+    padding-right: 60px;
+}
+
+.rooster:hover {
+    opacity: 50%;
+}
+
+.chosen {
+    color: #2e6d95;
+}
+
+th {
+    text-align: left;
+}
+
+#joker {
+    padding: 20px;
+    position: relative;
+    top: 40px;
+}
+
+#joker > span:last-child {
+    padding-left: 20px;
+}
+
+#joker:hover {
+    color: #2e6d95;
+}
+
