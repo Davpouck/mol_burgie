@@ -88,6 +88,7 @@ function Toon() {
     let html = '<button onclick="addVraag()">voeg vraag toe</button>'
     html += '<button onclick="popVraag()">verwijder laatste vraag</button>'
     html += '<button onclick="save()">sla op</button>'
+    html += '<button onclick="back()">sla op + terug naar overzicht</button>'
     html += ' filename: '+filename
     for (let i=0; i < vragen.obj.length; i++) {
         html += toonVraag(vragen.obj[i], i);
@@ -187,14 +188,13 @@ function inputData() {
     }
     vragen.obj = n_vragen   
 }
-
-function sendToServer() {
+function back() {
     let name = filename
     let content = {
         naam: name,
         data: vragen.obj
     }
-    fetch('./input_vragen', {
+    fetch('./save_input_vragen', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -202,9 +202,6 @@ function sendToServer() {
         body: JSON.stringify(content)
       }).then(re => {
           if (re.ok) {
-              vragen = new objectProperty([])
-              vragen.addListener((oud, nieuw) => Toon())
-              Toon();
               alert("vragen correct opgeslagen")
               window.location.href = "./eliminatie_config.html"
           } else {
