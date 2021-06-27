@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eliminatie config</title>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    </head>
+    <body>
+        <p>geef namen in en duid het kleur van het scherm aan (gebruik enkel <em>"azertyuiopqsdfghjklmwxcvbn"</em>)</p>
+        <p>druk daarna op <em>start eliminatie</em>: het scherm komt te voorschijn</p>
+        <p>druk op 1 om intro muziek te starten</p>
+        <p>begin te typen om te starten (de achtergrondmuziek start vanzelf)</p>
+        <p>druk enter rood/groen scherm te tonen, druk nogmaals enter om terug te keren naar de invoer van namen</p>
+        <button onclick="add()">+</button>
+        <button onclick="remove()">-</button>
+        <button onclick="start()">start eliminatie</button>
+        <div id="namen">
+        </div>
+        <script>
+            function add() {
+                let index = $("#namen").children().length
+                $("#namen").append("<div><input class='deelnemer'></input><button color='groen' onclick='toggle("+index+")' style='background-color:green;'>c</button></div>")
+            }
+            function remove() {
+                $("#namen").children().last().remove()
+            }
+            function toggle(index) {
+                let color = $("#namen").children().eq(index).children("button").attr("color")
+                $("#namen").children().eq(index).children("button").attr("color", color=="rood"?"groen":"rood")
+                $("#namen").children().eq(index).children("button").css("background-color", color=="rood"?"green":"red")
+            }
+            function start() {
+                let namen = Array.from($(".deelnemer")).map(v=>v.value)
+                let deelnemers = {}
+                for (let i=0; i<namen.length;i++) {
+                    let naam = namen[i].toLowerCase()
+                    if (naam != undefined && deelnemers[naam] == undefined) {
+                        deelnemers[naam] = $("#namen").children().eq(i).children("button").attr("color")
+                    }
+                }
+                sessionStorage.setItem("deelnemers", JSON.stringify(deelnemers))
+                window.location.href = "./eliminatie_scherm.html"
+            }
+        </script>
+    </body>
+</html>
