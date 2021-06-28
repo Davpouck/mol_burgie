@@ -163,7 +163,11 @@ function changeType(i) {
 
 function init() {
     filename = localStorage.getItem("filename")
-    fetch("./get_intput_vragen?"+filename)
+    fetch("./protected&eliminatie_vragen/"+filename, {
+        headers: {
+          'Authorization': sessionStorage.getItem("key")
+        },
+      })
     .then(response => {
         if (response.ok) {
             return response.json()
@@ -197,7 +201,8 @@ function back() {
     fetch('./save_input_vragen', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
         },
         body: JSON.stringify(content)
       }).then(re => {
@@ -221,7 +226,8 @@ function save() {
     fetch('./save_input_vragen', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
         },
         body: JSON.stringify(content)
       }).then(re => {

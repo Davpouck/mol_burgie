@@ -285,7 +285,7 @@ class Eliminatie {
                     deelnemers[deelnemer].joker = json.deelnemers[deelnemer].joker
                     deelnemers[deelnemer].jokerGebruikt = 0
                 }
-                return fetch("./data/eliminatie/"+json.active+"/vragen.json?filter").then(response => {
+                return fetch("./eliminatie_vragen_filtered/"+json.active).then(response => {
                     return response.json()
                 }).then(json => {
                     let vragen = json.map(v => new Vraag(v.vraag, v.opties, v.type))

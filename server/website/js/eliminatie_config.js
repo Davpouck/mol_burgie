@@ -4,15 +4,26 @@ let deelnemers = {}
 localStorage.clear()
 
 function getVragenlijsten() {
-    fetch("./data/eliminatie/config.json")
+    fetch("./data/eliminatie/config.json", {
+        headers: {
+          'Authorization': sessionStorage.getItem("key")
+        },
+      })
     .then((response) => {
         if (response.ok) {
             return response.json()
-        } else return;
+        } else {
+            alert(response.statusText)
+            return;
+        }
     }).then((obj) => {
         active = obj.active;
         deelnemers = obj.deelnemers
-        return fetch("./get_eliminatie")
+        return fetch("./protected&all_eliminatie", {
+            headers: {
+              'Authorization': sessionStorage.getItem("key")
+            },
+          })
     }).then((response) => {
         if (response.ok) {
             return response.json()
@@ -89,7 +100,8 @@ function delVragen(file) {
     fetch('./del_eliminatie_folder', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
         },
         body: JSON.stringify({filename: file})
       }).then(re => {
@@ -123,7 +135,8 @@ function sendNewServer(filename, after) {
     fetch('./new_input_vragen', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
         },
         body: JSON.stringify(content)
       }).then(re => {
@@ -174,11 +187,13 @@ function configToServer() {
     fetch('./update_config', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
         },
         body: JSON.stringify(message)
       }).then(re => {
           if (re.ok) {
+            getVragenlijsten()
           } else {
               throw new Error(re.status)
           }

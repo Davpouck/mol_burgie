@@ -52,7 +52,11 @@ function init() {
         return response.json();
     }).then(json => {
         vragen = json
-        return fetch("/get_results?"+eliminatie)
+        return fetch("/protected&eliminatie_results/"+eliminatie, {
+            headers: {
+              'Authorization': sessionStorage.getItem("key")
+            },
+          })
     }).then(response => {
         return response.json()
     }).then(json => {

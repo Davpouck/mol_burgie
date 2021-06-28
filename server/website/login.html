@@ -12,7 +12,7 @@
         <input id="ww"></input>
     </div>
     <button onclick="login()">login</button>
-    <!-- <div>
+    <div>
         <label>naam: </label><br>
         <input id="login_name_wijzig"></input>
     </div>
@@ -24,7 +24,7 @@
         <label>nieuw ww: </label><br>
         <input id="new_ww"></input>
     </div>
-    <button onclick="wijzig_ww()">wijzig ww</button> -->
+    <button onclick="wijzig_ww()">wijzig ww</button>
     <script>
         function login() {
             let message = {
@@ -48,7 +48,26 @@
         }
 
         function wijzig_ww() {
-
+            let message = {
+                name: login_name_wijzig.value,
+                oud_ww: old_ww.value,
+                nieuw_ww: new_ww.value,
+            }
+            fetch("./change_password", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'login': JSON.stringify(message)
+                    },
+            }).then(response => {
+                if (response.ok) {
+                    alert("password changed")
+                    window.location.href = "./login.html"
+                } else {
+                    alert("changing failed")
+                }
+            }).catch(err => {
+            })
         }
     </script>
 </body>
