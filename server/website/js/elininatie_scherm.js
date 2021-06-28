@@ -27,6 +27,7 @@ function addLetter(event, obj) {
         }
     }
     if (event.key == "Enter") {
+        document.getElementById("outro").pause()
         if (document.getElementById("scherm") == null) {
             checkName(obj.innerHTML.slice(5), obj);
         }
