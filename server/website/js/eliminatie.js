@@ -99,7 +99,8 @@ class Eliminatie {
                 }
                 index++;
             }
-            document.getElementById("joker").hidden = false;
+            // joker
+            document.getElementById("joker").hidden = true //false;
             document.getElementById("joker").firstElementChild.innerHTML = '';
             let keuze_vraag = this.vragen[this.selected_vraag].keuze;
             if (keuze_vraag == "joker") {
@@ -195,7 +196,7 @@ class Eliminatie {
             document.getElementById("submit").classList.remove("disabled");
         }
         deelnemers[document.getElementById("naamKeuze").textContent]["jokerGebruikt"] = this.vragen.filter((item) => item.keuze == "joker").length;
-        document.getElementById("pasvragen").innerHTML = "pasvragen: " + deelnemers[naamKeuze.textContent]["pasvraag"] + " | jokers: " + deelnemers[naamKeuze.textContent]["joker"] + "(gebruikt: " + deelnemers[naamKeuze.textContent]["jokerGebruikt"] + ")";
+        document.getElementById("pasvragen").innerHTML = "pasvragen: " + deelnemers[naamKeuze.textContent]["pasvraag"] //+ " | jokers: " + deelnemers[naamKeuze.textContent]["joker"] + "(gebruikt: " + deelnemers[naamKeuze.textContent]["jokerGebruikt"] + ")";
         
     }
     
@@ -347,7 +348,7 @@ function clockStart() {
     if (naamKeuze.className != "disabled") {
         name.firstElementChild.textContent = "naam: " + naamKeuze.textContent;
         document.getElementById("pasvragen").hidden = false;
-        document.getElementById("pasvragen").innerHTML = "pasvragen: " + deelnemers[naamKeuze.textContent]["pasvraag"] + " | jokers: " + deelnemers[naamKeuze.textContent]["joker"] + "(gebruikt: " + deelnemers[naamKeuze.textContent]["jokerGebruikt"] + ")";
+        document.getElementById("pasvragen").innerHTML = "pasvragen: " + deelnemers[naamKeuze.textContent]["pasvraag"] //+ " | jokers: " + deelnemers[naamKeuze.textContent]["joker"] + "(gebruikt: " + deelnemers[naamKeuze.textContent]["jokerGebruikt"] + ")";
         naam.querySelector(".dropdown").hidden = true;
         start.hidden = true;
         eliminatie.selected_vraag = 0;
