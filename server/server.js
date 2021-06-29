@@ -13,6 +13,7 @@ const functionMap = {
     "protected&eliminatie_vragen": eliminatieVragen,
     "eliminatie_vragen_filtered": eliminatieVragenFiltered,
     "change_password": changePassword,
+    "check_code": checkCode,
 }
 
 
@@ -237,6 +238,17 @@ function postListener(req, res) {
                 res.end(err);
             }
         }
+        if (req.url.endsWith("data/code.json")) {
+            try {
+                fs.writeFile("./server/data/code.json", JSON.stringify(req.body))
+                res.writeHead(200);
+                res.end("");
+            } catch(err) {
+                console.log(err)
+                res.writeHead(500);
+                res.end(err);
+            }
+        }
     }
 
     // protected
@@ -332,23 +344,6 @@ function login(req, res) {
         })
 }
 
-/*** rest ***/
-
-function addUser(naam, wachtwoord) {
-    let new_user = {
-        "naam": naam,
-        "wachtwoord": wachtwoord,
-        "key": Math.random().toString(16).substr(2)
-    }
-    fs.readFile("./server/data/user.json")
-        .then(content => {
-            let users = JSON.parse(content)
-            users.push(new_user);
-            return fs.writeFile("./server/data/user.json", JSON.stringify(users))
-        })
-        .then();
-}
-
 function changePassword(req, res) {
     let login = JSON.parse(req.get("login"))
     fs.readFile("./server/data/user.json")
@@ -370,6 +365,41 @@ function changePassword(req, res) {
             res.end(err.toString());
         })
 }
+
+function checkCode(req, res) {
+    let code = req.get("code")
+    fs.readFile("./server/data/code.json").then(content => {
+        let message = JSON.parse(content).find(e => e.code == code)
+        if (message == undefined) {
+            res.writeHead(200)
+            res.end(JSON.stringify({value: undefined}))
+        } else {
+            res.writeHead(200)
+            res.end(JSON.stringify(message))
+        }
+    }).catch(err => {
+        res.writeHead(500)
+        res.end(err.toString())
+    })
+}
+
+/*** rest ***/
+
+function addUser(naam, wachtwoord) {
+    let new_user = {
+        "naam": naam,
+        "wachtwoord": wachtwoord,
+        "key": Math.random().toString(16).substr(2)
+    }
+    fs.readFile("./server/data/user.json")
+        .then(content => {
+            let users = JSON.parse(content)
+            users.push(new_user);
+            return fs.writeFile("./server/data/user.json", JSON.stringify(users))
+        })
+        .then();
+}
+
  
 /*** HELP FUNCTIONS ***/
 

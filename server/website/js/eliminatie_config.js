@@ -1,6 +1,7 @@
 let files = {}
 let active = 0
 let deelnemers = {}
+let codes = []
 localStorage.clear()
 
 function getVragenlijsten() {
@@ -30,6 +31,17 @@ function getVragenlijsten() {
         } else return;
     }).then((obj) => {
         files = obj;
+        return fetch("./data/code.json", {
+            headers: {
+              'Authorization': sessionStorage.getItem("key")
+            },
+          })
+    }).then((response) => {
+        if (response.ok) {
+            return response.json()
+        } else return;
+    }).then(json => {
+        codes = json
         Toon()
     })
 }
@@ -65,6 +77,14 @@ function Toon() {
         return html
     }
 
+    function codesHTML() {
+        html = "<div style='padding-top:40px;'> Code spel"
+        html += "<div><button onclick='addCode()'>+</button><button onclick='popCode()'>-</button><button onclick='saveCode()'>save</button></div>"
+        html += "<div><input disabled value='input'></input><input disabled value='output'></input></div>"
+        codes.forEach(v => html += `<div><input class='code-c' value='${v.code}'></input><input class='code-v' value='${v.value}'></input></div>`)
+        return html
+    }
+
     html = `<button onclick="newVragen()">nieuwe vragenlijst</button>
         <div class="horz-bar">
             <span><b>actief</b></span>
@@ -79,6 +99,9 @@ function Toon() {
     $("input[type='radio']").on("change", () => newActive())
     $("input[type='radio']").filter("[value="+active+"]").prop("checked", true)
     $("body").append(deelnemersHTML())
+    $("body").append(codesHTML())
+    $(".code-c").on("change", () => updateCodes())
+    $(".code-v").on("change", () => updateCodes())
 
 }
 
@@ -120,6 +143,45 @@ function delVragen(file) {
 function goToView(file) {
     localStorage.setItem("filename", file)
     window.location.href = "./input_vragen.html"
+}
+
+function CodesToServer() {
+    fetch('./data/code.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
+        },
+        body: JSON.stringify(codes)
+      }).then(response => {
+          getVragenlijsten()
+      }).catch(err => {
+          alert(err)
+      })
+}
+
+function addCode() {
+    codes.push({
+        code: "default code",
+        value: "default value"
+    })
+    CodesToServer()
+} 
+
+function popCode() {
+    codes.pop()
+    CodesToServer()
+}
+
+function saveCode() {
+    CodesToServer()
+}
+
+function updateCodes() {
+    codes = []
+    $(".code-c").each((i,e) => codes.push({code: e.value}))
+    $(".code-v").each((i,e) => codes[i].value = e.value)
+    CodesToServer()
 }
 
 function sendNewServer(filename, after) {
