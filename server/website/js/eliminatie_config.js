@@ -59,6 +59,7 @@ function Toon() {
             html += `<button onclick='view("${file}")'>view/edit</button>`
         }
         html += `<button onclick='delVragen("${file}")'>del</button>`
+        html += `<button><a href="/data/eliminatie/${file}/vragen.json" download>download</a></button>`
         html += "</span>"
         html += "</div>"
         return html

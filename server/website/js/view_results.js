@@ -27,7 +27,7 @@ function ToonResults() {
     let html = "<table>"
     html += "<tr><th>deelnemer</th><th>pt</th><th>tijd</th><th>pasvragen</th>"
     for (let i=0; i<vragen.length;i++) {
-        html += "<th>"+i+"</th>"
+        html += "<th>"+(i+1)+"</th>"
     }
     for (let deelnemer of antwoorden) {
         html += "<tr>"
@@ -48,7 +48,12 @@ function ToonResults() {
 function init() {
     eliminatie = localStorage.getItem("file_results")
     if (eliminatie == undefined) window.location.href = "./eliminatie_config.html"
-    fetch("/data/eliminatie/"+eliminatie+"/vragen.json").then(response => {
+    fetch("/data/eliminatie/"+eliminatie+"/vragen.json",{
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem("key")
+        },
+      }).then(response => {
         return response.json();
     }).then(json => {
         vragen = json

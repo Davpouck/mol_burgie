@@ -280,7 +280,7 @@ function allEliminatie(req, res) {
 }
 
 function eliminatieResults(req, res) {
-    let file = req.url.substr("/eliminatie_results".length)
+    let file = req.url.substr("/protected&eliminatie_results".length)
     fs.readdir("./server/data/eliminatie/"+file).then(dir => {
         return Promise.all(dir.filter(v => v != "vragen.json").map(v => fs.readFile("./server/data/eliminatie/"+file+"/"+v)))
     }).then(responses => {
